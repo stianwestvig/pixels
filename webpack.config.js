@@ -20,7 +20,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Pixels'
+      title: 'Pixels',
+      template: 'src/index.html'
     })
   ],
   devServer: {
