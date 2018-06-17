@@ -2,7 +2,7 @@
   "name": "pixels",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Stian Westvig <stian.westvig@bouvet.no>",
+  "author": "Stian Westvig <stian.westvig@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",

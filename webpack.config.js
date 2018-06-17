@@ -22,5 +22,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Pixels'
     })
-  ]
+  ],
+  devServer: {
+    port: 3000
+  }
 };
