@@ -1,58 +1,94 @@
-import { drawLine } from './draw-helpers.js';
+import { drawLine, drawMatrix } from './draw-helpers.js';
 
-export function drawNinja(figure) {
-  const theme = figure.theme;
-  drawLine({ ...figure, row: 0 }, ['transparent', 'transparent', 'transparent', theme.main, theme.main, 'transparent', 'transparent', 'transparent']);
-  drawLine({ ...figure, row: 1 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 2 }, ['transparent', theme.main, theme.skin, 'black', theme.skin, 'black', theme.main, 'transparent']);
-  drawLine({ ...figure, row: 3 }, [theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, theme.main]);
-  drawLine({ ...figure, row: 4 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 5 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 6 }, ['transparent', 'transparent', theme.main, 'transparent', 'transparent', theme.main, 'transparent', 'transparent']);
-  drawLine({ ...figure, row: 7 }, ['transparent', 'transparent', theme.main, 'transparent', 'transparent', theme.main, 'transparent', 'transparent']);
+export function drawNinja(model) {
+  const theme = model.theme;
+  const themeMap = new Map();
+  themeMap.set(0, 'transparent');
+  themeMap.set(1, theme.main);
+  themeMap.set(2, theme.skin);
+  themeMap.set(3, theme.eyes);
+
+  const matrix = [
+    [0,0,0,1,1,0,0,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,2,3,2,3,1,0],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,0,0,1,0,0],
+    [0,0,1,0,0,1,0,0],
+  ];
+
+  drawMatrix(matrix, { ...model, themeMap });
 }
 
-export function drawNinjaWalking1(figure) {
-  const theme = figure.theme;
-  drawLine({ ...figure, row: 0 }, ['transparent', 'transparent', 'transparent', theme.main, theme.main, 'transparent', 'transparent', 'transparent']);
-  drawLine({ ...figure, row: 1 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 2 }, ['transparent', theme.main, theme.skin, 'black', theme.skin, 'black', theme.main, 'transparent']);
-  drawLine({ ...figure, row: 3 }, [theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, theme.main]);
-  drawLine({ ...figure, row: 4 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 5 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 6 }, ['transparent', 'transparent', theme.main, 'transparent', 'transparent', theme.main, 'transparent', 'transparent']);
-  drawLine({ ...figure, row: 7 }, ['transparent', 'transparent', 'transparent', 'transparent', 'transparent', theme.main, 'transparent', 'transparent']);
+export function drawNinjaWalking1(model) {
+  const theme = model.theme;
+  const themeMap = new Map();
+  themeMap.set(0, 'transparent');
+  themeMap.set(1, theme.main);
+  themeMap.set(2, theme.skin);
+  themeMap.set(3, theme.eyes);
+
+  const matrix = [
+    [0,0,0,1,1,0,0,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,2,3,2,3,1,0],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,0,0,1,0,0],
+    [0,0,0,0,0,1,0,0],
+  ];
+
+  drawMatrix(matrix, { ...model, themeMap });
 }
 
-export function drawNinjaWalking2(figure) {
-  const theme = figure.theme;
-  drawLine({ ...figure, row: 0 }, ['transparent', 'transparent', 'transparent', theme.main, theme.main, 'transparent', 'transparent', 'transparent']);
-  drawLine({ ...figure, row: 1 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 2 }, ['transparent', theme.main, theme.skin, 'black', theme.skin, 'black', theme.main, 'transparent']);
-  drawLine({ ...figure, row: 3 }, [theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, theme.main]);
-  drawLine({ ...figure, row: 4 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 5 }, ['transparent', theme.main, theme.main, theme.main, theme.main, theme.main, theme.main, 'transparent']);
-  drawLine({ ...figure, row: 6 }, ['transparent', 'transparent', theme.main, 'transparent', 'transparent', theme.main, 'transparent', 'transparent']);
-  drawLine({ ...figure, row: 7 }, ['transparent', 'transparent', theme.main, 'transparent', 'transparent', 'transparent', 'transparent', 'transparent']);
+export function drawNinjaWalking2(model) {
+  const theme = model.theme;
+  const themeMap = new Map();
+  themeMap.set(0, 'transparent');
+  themeMap.set(1, theme.main);
+  themeMap.set(2, theme.skin);
+  themeMap.set(3, theme.eyes);
+
+  const matrix = [
+    [0,0,0,1,1,0,0,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,2,3,2,3,1,0],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,0,0,1,0,0],
+    [0,0,1,0,0,0,0,0],
+  ];
+
+  drawMatrix(matrix, { ...model, themeMap });
 }
 
-export const ninjaBlue = {
+export const blueNinjaTheme = {
   theme: {
     main: '#92DCE5',
-    skin: '#FFA07A'
+    skin: '#FFA07A',
+    eyes: 'black'
   }
 };
 
-export const ninjaDark = {
+export const darkNinjaTheme = {
   theme: {
     main: '#2B303A',
-    skin: '#FFA07A'
+    skin: '#FFA07A',
+    eyes: 'black'
   }
 };
 
-export const ninjaRed = {
+export const redNinjaTheme = {
   theme: {
     main: '#D64933',
-    skin: '#FFA07A'
+    skin: '#FFA07A',
+    eyes: 'black'
   }
 };

@@ -2,10 +2,12 @@ import {
   drawNinja,
   drawNinjaWalking1,
   drawNinjaWalking2,
-  ninjaBlue,
-  ninjaDark,
-  ninjaRed
+  blueNinjaTheme,
+  darkNinjaTheme,
+  redNinjaTheme
 } from './modules/draw-ninja.js';
+
+import { drawStructure, woodenTheme } from './modules/draw-background.js';
 
 import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
 
@@ -45,16 +47,24 @@ function draw(timestamp) {
   c.fillStyle = '#329F5B';
   c.fillRect(0, 400, 800, 600);
 
-  drawNinjaWalking2({
-    ...ninjaRed,
+  drawStructure({
+    ...woodenTheme,
+    c,
+    xOffset: 460,
+    yOffset: 250,
+    scale: 20
+  })
+
+  drawNinja({
+    ...redNinjaTheme,
     c,
     xOffset: 360,
     yOffset: 350,
     scale: 10
   });
 
-  drawNinjaWalking1({
-    ...ninjaDark,
+  drawNinja({
+    ...darkNinjaTheme,
     c,
     xOffset: 160,
     yOffset: 350,
@@ -68,7 +78,7 @@ function draw(timestamp) {
   if (walking) {
     if (parseInt((timestamp + '').charAt(0)) % 2) {
       drawNinjaWalking1({
-        ...ninjaBlue,
+        ...blueNinjaTheme,
         c,
         xOffset: posX,
         yOffset: 350,
@@ -76,7 +86,7 @@ function draw(timestamp) {
       });
     } else {
       drawNinjaWalking2({
-        ...ninjaBlue,
+        ...blueNinjaTheme,
         c,
         xOffset: posX,
         yOffset: 350,

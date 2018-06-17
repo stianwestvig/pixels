@@ -11,8 +11,6 @@ export function handleKeyUp(event, input) {
 }
 
 export function handleKeyDown(event, input) {
-  console.log(event.keyCode);
-
   if (event.keyCode === 68) {
     // D key
     input.isRight = true;

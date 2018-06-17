@@ -14,3 +14,11 @@ export function drawLine(context, pixels) {
     { ...context, fillStyle: pixel, yOffset: context.yOffset + context.row * context.scale }, index, 0)
   );
 }
+
+export function drawMatrix(matrix, model) {
+  const { themeMap } = model;
+  matrix.forEach((line, index) => drawLine(
+    { ...model, row: index },
+    line.map(key => themeMap.get(key))
+  ));
+}
