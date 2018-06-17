@@ -10,7 +10,11 @@ export function animateNinja(state) {
   const {
     animationCounter,
     c,
-    position,
+    position = {
+      scale: 10,
+      x: 0,
+      y: 0
+    },
     theme,
     walking,
   } = state;
@@ -21,7 +25,7 @@ export function animateNinja(state) {
         c,
         xOffset: position.x,
         yOffset: position.y,
-        scale: position.scale || 10,
+        scale: position.scale,
         theme
       });
     } else {
@@ -29,7 +33,7 @@ export function animateNinja(state) {
         c,
         xOffset: position.x,
         yOffset: position.y,
-        scale: position.scale || 10,
+        scale: position.scale,
         theme
       });
     }
@@ -38,7 +42,7 @@ export function animateNinja(state) {
       c,
       xOffset: position.x,
       yOffset: position.y,
-      scale: position.scale || 10,
+      scale: position.scale,
       theme
     });
   }

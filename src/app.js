@@ -27,7 +27,7 @@ function init() {
 
 const canvas = init();
 const c = canvas.getContext('2d');
-const walkingSpeed = 2;
+const walkingSpeed = 3;
 let animationCounter = 0;
 
 let playerState = {
@@ -35,7 +35,8 @@ let playerState = {
   c,
   position: {
     x: 60,
-    y: 350
+    y: 350,
+    scale: 7
   },
   theme: blueNinjaTheme,
   walking: false
@@ -46,7 +47,8 @@ const redNinjaState = {
   c,
   position: {
     x: 360,
-    y: 350
+    y: 350,
+    scale: 10
   },
   theme: redNinjaTheme,
   walking: false

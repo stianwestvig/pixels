@@ -1,5 +1,6 @@
-export function drawScaled(context, x, y) {
-  const { c,
+function drawScaledPixel(context, x, y) {
+  const {
+    c,
     xOffset = 0,
     yOffset = 0,
     scale = 1,
@@ -10,7 +11,7 @@ export function drawScaled(context, x, y) {
 }
 
 export function drawLine(context, pixels) {
-  pixels.forEach((pixel, index) => drawScaled(
+  pixels.forEach((pixel, index) => drawScaledPixel(
     { ...context, fillStyle: pixel, yOffset: context.yOffset + context.row * context.scale }, index, 0)
   );
 }
