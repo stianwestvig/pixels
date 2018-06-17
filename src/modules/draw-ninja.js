@@ -70,25 +70,19 @@ export function drawNinjaWalking2(model) {
 }
 
 export const blueNinjaTheme = {
-  theme: {
-    main: '#92DCE5',
-    skin: '#FFA07A',
-    eyes: 'black'
-  }
+  main: '#3333FF',
+  skin: '#FFA07A',
+  eyes: 'black'
 };
 
 export const darkNinjaTheme = {
-  theme: {
-    main: '#2B303A',
-    skin: '#FFA07A',
-    eyes: 'black'
-  }
+  main: '#2B303A',
+  skin: '#FFA07A',
+  eyes: 'black'
 };
 
 export const redNinjaTheme = {
-  theme: {
-    main: '#D64933',
-    skin: '#FFA07A',
-    eyes: 'black'
-  }
+  main: '#D64933',
+  skin: '#FFA07A',
+  eyes: 'black'
 };

@@ -1,15 +1,15 @@
 import {
-  drawNinja,
-  drawNinjaWalking1,
-  drawNinjaWalking2,
   blueNinjaTheme,
   darkNinjaTheme,
   redNinjaTheme
 } from './modules/draw-ninja.js';
 
+import { animateNinja } from './models/ninja.js';
 import { drawStructure, woodenTheme } from './modules/draw-background.js';
-
 import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
+
+// todo: good tutorial
+// https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
 
 function init() {
   console.log('Loading pixels');
@@ -56,55 +56,42 @@ function draw(timestamp) {
     scale: 20
   })
 
-  drawNinja({
-    ...redNinjaTheme,
+  const redNinjaState = {
+    animationCounter,
     c,
-    xOffset: 360,
-    yOffset: 350,
-    scale: 10
-  });
-
-  drawNinja({
-    ...darkNinjaTheme,
-    c,
-    xOffset: 160,
-    yOffset: 350,
-    scale: 20
-  });
-
-  // todo: good tutorial
-  // https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
-
-  // animation
-  if (walking) {
-    if (animationCounter < 30) {
-      console.log('left foot');
-      drawNinjaWalking1({
-        ...blueNinjaTheme,
-        c,
-        xOffset: posX,
-        yOffset: 350,
-        scale: 10
-      });
-    } else {
-      console.log('right foot');
-      drawNinjaWalking2({
-        ...blueNinjaTheme,
-        c,
-        xOffset: posX,
-        yOffset: 350,
-        scale: 10
-      });
-    }
-  } else {
-    drawNinja({
-      ...blueNinjaTheme,
-      c,
-      xOffset: posX,
-      yOffset: 350,
-      scale: 10
-    });
+    position: {
+      x: 360,
+      y: 350
+    },
+    theme: redNinjaTheme,
+    walking: false
   }
+  animateNinja(redNinjaState);
+
+  const darkNinjaState = {
+    animationCounter,
+    c,
+    position: {
+      x: 160,
+      y: 350,
+      scale: 20
+    },
+    theme: darkNinjaTheme,
+    walking: false
+  }
+  animateNinja(darkNinjaState);
+
+  const playerState = {
+    animationCounter,
+    c,
+    position: {
+      x: posX,
+      y: 350
+    },
+    theme: blueNinjaTheme,
+    walking
+  }
+  animateNinja(playerState);
 
   animationCounter ++;
   if (animationCounter === 60) {
