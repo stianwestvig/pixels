@@ -30,6 +30,7 @@ const c = canvas.getContext('2d');
 let posX = 60;
 let walking = true;
 let walkingSpeed = 2;
+let animationCounter = 0;
 
 let input = {
   isRight: false,
@@ -76,7 +77,8 @@ function draw(timestamp) {
 
   // animation
   if (walking) {
-    if (parseInt((timestamp + '').charAt(0)) % 2) {
+    if (animationCounter < 30) {
+      console.log('left foot');
       drawNinjaWalking1({
         ...blueNinjaTheme,
         c,
@@ -85,6 +87,7 @@ function draw(timestamp) {
         scale: 10
       });
     } else {
+      console.log('right foot');
       drawNinjaWalking2({
         ...blueNinjaTheme,
         c,
@@ -93,6 +96,19 @@ function draw(timestamp) {
         scale: 10
       });
     }
+  } else {
+    drawNinja({
+      ...blueNinjaTheme,
+      c,
+      xOffset: posX,
+      yOffset: 350,
+      scale: 10
+    });
+  }
+
+  animationCounter ++;
+  if (animationCounter === 60) {
+    animationCounter = 0;
   }
 
   // update positions
@@ -102,6 +118,12 @@ function draw(timestamp) {
 
   if (input.isLeft) {
     posX -= walkingSpeed;
+  }
+
+  if (input.isLeft || input.isRight) {
+    walking = true;
+  } else {
+    walking = false;
   }
 
   window.requestAnimationFrame(draw);
