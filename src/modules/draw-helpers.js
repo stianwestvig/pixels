@@ -1,25 +1,32 @@
-function drawScaledPixel(context, x, y) {
+function drawScaledPixel(state, x, y) {
   const {
     c,
     xOffset = 0,
     yOffset = 0,
     scale = 1,
     fillStyle = 'black'
-  } = context;
+  } = state;
   c.fillStyle = fillStyle;
   c.fillRect(x * scale + xOffset, y * scale + yOffset, scale, scale);
 }
 
-export function drawLine(context, pixels) {
+export function drawLine(state, pixels) {
   pixels.forEach((pixel, index) => drawScaledPixel(
-    { ...context, fillStyle: pixel, yOffset: context.yOffset + context.row * context.scale }, index, 0)
+    {
+      ...state,
+      fillStyle: pixel,
+      scale: state.position.scale,
+      xOffset: state.position.x,
+      yOffset: state.position.y + state.row * state.position.scale
+    },
+    index, 0)
   );
 }
 
-export function drawMatrix(matrix, model) {
-  const { themeMap } = model;
-  matrix.forEach((line, index) => drawLine(
-    { ...model, row: index },
+export function drawAnySprite(sprite, state) {
+  const { themeMap } = state;
+  sprite.forEach((line, index) => drawLine(
+    { ...state, row: index },
     line.map(key => themeMap.get(key))
   ));
 }

@@ -2,9 +2,9 @@ import {
   blueNinjaTheme,
   darkNinjaTheme,
   redNinjaTheme
-} from './modules/draw-ninja.js';
+} from './sprites/ninja.js';
 
-import { animateNinja } from './models/ninja.js';
+import { drawNinjaSprite } from './models/ninja.js';
 import { drawStructure, woodenTheme } from './modules/draw-background.js';
 import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
 
@@ -39,7 +39,8 @@ let playerState = {
     scale: 7
   },
   theme: blueNinjaTheme,
-  walking: false
+  walking: false,
+  direction: 'right'
 }
 
 const redNinjaState = {
@@ -51,7 +52,8 @@ const redNinjaState = {
     scale: 10
   },
   theme: redNinjaTheme,
-  walking: false
+  walking: false,
+  direction: 'left'
 }
 
 const darkNinjaState = {
@@ -63,7 +65,8 @@ const darkNinjaState = {
     scale: 20
   },
   theme: darkNinjaTheme,
-  walking: false
+  walking: false,
+  direction: 'right'
 }
 
 let input = {
@@ -85,14 +88,16 @@ function draw(timestamp) {
   drawStructure({
     theme: woodenTheme,
     c,
-    xOffset: 460,
-    yOffset: 250,
-    scale: 20
+    position: {
+      x: 460,
+      y: 250,
+      scale: 20
+    }
   })
 
-  animateNinja(redNinjaState);
-  animateNinja(darkNinjaState);
-  animateNinja(playerState);
+  drawNinjaSprite(redNinjaState);
+  drawNinjaSprite(darkNinjaState);
+  drawNinjaSprite(playerState);
 
   animationCounter ++;
   if (animationCounter === 60) {
@@ -103,10 +108,12 @@ function draw(timestamp) {
   // update positions
   if (input.isRight) {
     playerState.position.x += walkingSpeed;
+    playerState.direction = 'right';
   }
 
   if (input.isLeft) {
     playerState.position.x -= walkingSpeed;
+    playerState.direction = 'left';
   }
 
   if (input.isLeft || input.isRight) {
