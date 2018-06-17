@@ -7,8 +7,13 @@ import {
   ninjaRed
 } from './modules/draw-ninja.js';
 
+import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
+
 function init() {
   console.log('Loading pixels');
+
+  window.addEventListener('keydown', (event) => handleKeyDown(event, input));
+  window.addEventListener('keyup', (event) => handleKeyUp(event, input));
 
   const canvas = document.createElement('canvas');
   canvas.width = 800;
@@ -22,6 +27,12 @@ const canvas = init();
 const c = canvas.getContext('2d');
 let posX = 60;
 let walking = true;
+let walkingSpeed = 2;
+
+let input = {
+  isRight: false,
+  isLeft: false
+}
 
 function draw(timestamp) {
   c.clearRect(0, 0, canvas.width, canvas.height);
@@ -53,6 +64,7 @@ function draw(timestamp) {
   // todo: good tutorial
   // https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
 
+  // animation
   if (walking) {
     if (parseInt((timestamp + '').charAt(0)) % 2) {
       drawNinjaWalking1({
@@ -73,7 +85,14 @@ function draw(timestamp) {
     }
   }
 
-  posX++;
+  // update positions
+  if (input.isRight) {
+    posX += walkingSpeed;
+  }
+
+  if (input.isLeft) {
+    posX -= walkingSpeed;
+  }
 
   window.requestAnimationFrame(draw);
 }
