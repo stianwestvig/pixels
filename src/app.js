@@ -27,10 +27,42 @@ function init() {
 
 const canvas = init();
 const c = canvas.getContext('2d');
-let posX = 60;
-let walking = true;
-let walkingSpeed = 2;
+const walkingSpeed = 2;
 let animationCounter = 0;
+
+let playerState = {
+  animationCounter,
+  c,
+  position: {
+    x: 60,
+    y: 350
+  },
+  theme: blueNinjaTheme,
+  walking: false
+}
+
+const redNinjaState = {
+  animationCounter,
+  c,
+  position: {
+    x: 360,
+    y: 350
+  },
+  theme: redNinjaTheme,
+  walking: false
+}
+
+const darkNinjaState = {
+  animationCounter,
+  c,
+  position: {
+    x: 160,
+    y: 350,
+    scale: 20
+  },
+  theme: darkNinjaTheme,
+  walking: false
+}
 
 let input = {
   isRight: false,
@@ -49,68 +81,36 @@ function draw(timestamp) {
   c.fillRect(0, 400, 800, 600);
 
   drawStructure({
-    ...woodenTheme,
+    theme: woodenTheme,
     c,
     xOffset: 460,
     yOffset: 250,
     scale: 20
   })
 
-  const redNinjaState = {
-    animationCounter,
-    c,
-    position: {
-      x: 360,
-      y: 350
-    },
-    theme: redNinjaTheme,
-    walking: false
-  }
   animateNinja(redNinjaState);
-
-  const darkNinjaState = {
-    animationCounter,
-    c,
-    position: {
-      x: 160,
-      y: 350,
-      scale: 20
-    },
-    theme: darkNinjaTheme,
-    walking: false
-  }
   animateNinja(darkNinjaState);
-
-  const playerState = {
-    animationCounter,
-    c,
-    position: {
-      x: posX,
-      y: 350
-    },
-    theme: blueNinjaTheme,
-    walking
-  }
   animateNinja(playerState);
 
   animationCounter ++;
   if (animationCounter === 60) {
     animationCounter = 0;
   }
+  playerState.animationCounter = animationCounter;
 
   // update positions
   if (input.isRight) {
-    posX += walkingSpeed;
+    playerState.position.x += walkingSpeed;
   }
 
   if (input.isLeft) {
-    posX -= walkingSpeed;
+    playerState.position.x -= walkingSpeed;
   }
 
   if (input.isLeft || input.isRight) {
-    walking = true;
+    playerState.walking = true;
   } else {
-    walking = false;
+    playerState.walking = false;
   }
 
   window.requestAnimationFrame(draw);

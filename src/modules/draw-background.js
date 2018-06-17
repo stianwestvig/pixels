@@ -28,9 +28,7 @@ export function drawStructure(model) {
 }
 
 export const woodenTheme = {
-  theme: {
-    main: '#D49959',
-    dark: '#886239',
-    light: '#E4BD95'
-  }
+  main: '#D49959',
+  dark: '#886239',
+  light: '#E4BD95'
 };
