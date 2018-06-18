@@ -23,7 +23,7 @@ function init() {
 
 const canvas = init();
 const c = canvas.getContext('2d');
-const walkingSpeed = 3;
+const walkingSpeed = 15;
 let animationCounter = 0;
 
 let playerState = {
@@ -47,7 +47,7 @@ const redNinjaState = {
     y: 350,
     scale: 10
   },
-  theme: 'red',
+  theme: 'blue',
   walking: false,
   direction: 'left'
 }
@@ -56,7 +56,7 @@ const darkNinjaState = {
   animationCounter,
   c,
   position: {
-    x: 160,
+    x: 760,
     y: 350,
     scale: 20
   },
@@ -67,7 +67,9 @@ const darkNinjaState = {
 
 let input = {
   isRight: false,
-  isLeft: false
+  isLeft: false,
+  isDown: false,
+  isUp: false
 }
 
 function draw(timestamp) {
@@ -79,7 +81,7 @@ function draw(timestamp) {
 
   // ground
   c.fillStyle = '#329F5B';
-  c.fillRect(0, 400, 1920, 600);
+  c.fillRect(0, 400, 1920, 1080);
 
   drawShrineSprite({
     c,
@@ -126,6 +128,16 @@ function draw(timestamp) {
 
   if (input.isLeft) {
     playerState.position.x -= walkingSpeed;
+    playerState.direction = 'left';
+  }
+
+  if (input.isDown) {
+    playerState.position.y += walkingSpeed;
+    playerState.direction = 'left';
+  }
+
+  if (input.isUp) {
+    playerState.position.y -= walkingSpeed;
     playerState.direction = 'left';
   }
 
