@@ -4,8 +4,10 @@ import {
   redNinjaTheme
 } from './sprites/ninja.js';
 
+import { woodenTheme } from './sprites/shrine.js';
+
 import { drawNinjaSprite } from './models/ninja.js';
-import { drawStructure, woodenTheme } from './modules/draw-background.js';
+import { drawShrineSprite } from './models/shrine.js';
 import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
 
 // todo: good tutorial
@@ -87,7 +89,7 @@ function draw(timestamp) {
   c.fillStyle = '#329F5B';
   c.fillRect(0, 400, 1920, 600);
 
-  drawStructure({
+  drawShrineSprite({
     theme: woodenTheme,
     c,
     position: {
