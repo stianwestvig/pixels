@@ -1,6 +1,6 @@
 import { drawNinjaSprite } from './models/ninja.js';
 import { drawShrineSprite } from './models/shrine.js';
-import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
+import { handleKeyDown, handleKeyUp } from './lib/keyboard-input.js';
 
 // todo: good tutorial
 // https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
@@ -32,9 +32,9 @@ let playerState = {
   position: {
     x: 60,
     y: 350,
-    scale: 7
+    scale: 15
   },
-  theme: 'blue',
+  theme: 'red',
   walking: false,
   direction: 'right'
 }
@@ -86,7 +86,25 @@ function draw(timestamp) {
     position: {
       x: 460,
       y: 250,
-      scale: 20
+      scale: 5
+    }
+  })
+
+  drawShrineSprite({
+    c,
+    position: {
+      x: 960,
+      y: 250,
+      scale: 7
+    }
+  })
+
+  drawShrineSprite({
+    c,
+    position: {
+      x:1560,
+      y: 250,
+      scale: 5
     }
   })
 

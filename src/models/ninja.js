@@ -1,4 +1,4 @@
-import { drawAnySprite } from '../modules/draw-helpers.js';
+import { drawAnySprite } from '../lib/draw-helpers.js';
 import { spriteSheet, themes } from '../sprites/ninja.js';
 
 function selectSpriteToDraw(state) {

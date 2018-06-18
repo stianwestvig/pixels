@@ -16,6 +16,7 @@ yarn start
 - Add sprites and state for facing directions
 - Longer level, rolling background
 - Gamestate, score, hud, handle game over
+- Add sound effects
 
 ## Ideas for future
 
@@ -24,6 +25,7 @@ yarn start
 - Only draw what is near, only hear what is near
 - Weapon pickups
 - Winner get sushi dinner
+- Add some music?
 
 ## Done
 
