@@ -15,6 +15,7 @@ function selectSpriteToDraw(state) {
       : spriteSheet.get('walkingRight')[1]
     }
   } else {
+    // standing still
     return (direction === 'left')
     ? spriteSheet.get('standingLeft')[0]
     : spriteSheet.get('standingRight')[0]

@@ -18,8 +18,10 @@ function init() {
   window.addEventListener('keyup', (event) => handleKeyUp(event, input));
 
   const canvas = document.createElement('canvas');
-  canvas.width = 800;
-  canvas.height = 600;
+  // canvas.width = 800;
+  // canvas.height = 600;
+  canvas.width = 1920;
+  canvas.height = 1080;
 
   document.body.appendChild(canvas);
   return canvas;
@@ -79,11 +81,11 @@ function draw(timestamp) {
 
   // sky
   c.fillStyle = '#DFFFFF';
-  c.fillRect(0, 0, 800, 400);
+  c.fillRect(0, 0, 1920, 400);
 
   // ground
   c.fillStyle = '#329F5B';
-  c.fillRect(0, 400, 800, 600);
+  c.fillRect(0, 400, 1920, 600);
 
   drawStructure({
     theme: woodenTheme,
