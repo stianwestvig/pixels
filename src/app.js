@@ -1,11 +1,3 @@
-import {
-  blueNinjaTheme,
-  darkNinjaTheme,
-  redNinjaTheme
-} from './sprites/ninja.js';
-
-import { woodenTheme } from './sprites/shrine.js';
-
 import { drawNinjaSprite } from './models/ninja.js';
 import { drawShrineSprite } from './models/shrine.js';
 import { handleKeyDown, handleKeyUp } from './modules/keyboard-input.js';
@@ -42,7 +34,7 @@ let playerState = {
     y: 350,
     scale: 7
   },
-  theme: blueNinjaTheme,
+  theme: 'blue',
   walking: false,
   direction: 'right'
 }
@@ -55,7 +47,7 @@ const redNinjaState = {
     y: 350,
     scale: 10
   },
-  theme: redNinjaTheme,
+  theme: 'red',
   walking: false,
   direction: 'left'
 }
@@ -68,7 +60,7 @@ const darkNinjaState = {
     y: 350,
     scale: 20
   },
-  theme: darkNinjaTheme,
+  theme: 'dark',
   walking: false,
   direction: 'right'
 }
@@ -90,7 +82,6 @@ function draw(timestamp) {
   c.fillRect(0, 400, 1920, 600);
 
   drawShrineSprite({
-    theme: woodenTheme,
     c,
     position: {
       x: 460,

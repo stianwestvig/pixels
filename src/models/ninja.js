@@ -1,5 +1,5 @@
 import { drawAnySprite } from '../modules/draw-helpers.js';
-import { spriteSheet } from '../sprites/ninja.js';
+import { spriteSheet, themes } from '../sprites/ninja.js';
 
 function selectSpriteToDraw(state) {
   const { walking, direction, animationCounter } = state;
@@ -24,12 +24,7 @@ function selectSpriteToDraw(state) {
 
 export function drawNinjaSprite(state) {
   const { theme } = state;
-  const themeMap = new Map();
-
-  themeMap.set(0, 'transparent');
-  themeMap.set(1, theme.main);
-  themeMap.set(2, theme.skin);
-  themeMap.set(3, theme.eyes);
+  const themeMap = themes.get(theme);
 
   drawAnySprite(selectSpriteToDraw(state), { ...state, themeMap });
 }

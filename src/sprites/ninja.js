@@ -1,3 +1,30 @@
+const darkTheme = new Map([
+  [0, 'transparent'],
+  [1, '#2B303A'],
+  [2, '#FFA07A'],
+  [3, 'black'],
+]);
+
+const redTheme = new Map([
+  [0, 'transparent'],
+  [1, '#D64933'],
+  [2, '#FFA07A'],
+  [3, 'black'],
+]);
+
+const blueTheme = new Map([
+  [0, 'transparent'],
+  [1, '#3333FF'],
+  [2, '#FFA07A'],
+  [3, 'black'],
+]);
+
+export const themes = new Map([
+  ['dark', darkTheme],
+  ['red', redTheme],
+  ['blue', blueTheme]
+]);
+
 const stillRight = [
   [0,0,0,1,1,0,0,0],
   [0,1,1,1,1,1,1,0],
@@ -42,21 +69,3 @@ spriteSheet.set('standingRight', [stillRight]);
 spriteSheet.set('standingLeft', [stillLeft]);
 spriteSheet.set('walkingRight', [walkingRight1, walkingRight2]);
 spriteSheet.set('walkingLeft', [walkingLeft1, walkingLeft2]);
-
-export const blueNinjaTheme = {
-  main: '#3333FF',
-  skin: '#FFA07A',
-  eyes: 'black'
-};
-
-export const darkNinjaTheme = {
-  main: '#2B303A',
-  skin: '#FFA07A',
-  eyes: 'black'
-};
-
-export const redNinjaTheme = {
-  main: '#D64933',
-  skin: '#FFA07A',
-  eyes: 'black'
-};
