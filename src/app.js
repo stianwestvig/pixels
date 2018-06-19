@@ -1,27 +1,17 @@
 import { drawNinjaSprite } from './models/ninja.js';
 import { drawShrineSprite } from './models/shrine.js';
 import { handleKeyDown, handleKeyUp } from './lib/keyboard-input.js';
-
-// todo: good tutorial
-// https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
+import { canvas, fpsCounter } from './lib/dom-elements.js';
 
 function init() {
-  console.log('Loading pixels');
-
   window.addEventListener('keydown', (event) => handleKeyDown(event, input));
   window.addEventListener('keyup', (event) => handleKeyUp(event, input));
 
-  const canvas = document.createElement('canvas');
-  // canvas.width = 800;
-  // canvas.height = 600;
-  canvas.width = 1920;
-  canvas.height = 1080;
-
   document.body.appendChild(canvas);
-  return canvas;
+  document.body.appendChild(fpsCounter);
 }
 
-const canvas = init();
+init();
 const c = canvas.getContext('2d');
 const walkingSpeed = 15;
 let animationCounter = 0;
@@ -72,16 +62,34 @@ let input = {
   isUp: false
 }
 
+const times = [];
+let fps;
+
 function draw(timestamp) {
+
+  // measure frames per second
+  const now = performance.now();
+  while (times.length > 0 && times[0] <= now - 1000) {
+    times.shift();
+  }
+  times.push(now);
+  fps = times.length;
+  fpsCounter.textContent = fps;
+
   c.clearRect(0, 0, canvas.width, canvas.height);
 
   // sky
-  c.fillStyle = '#DFFFFF';
+  c.beginPath();
+  const gradient = c.createLinearGradient(0,0,1220,1200);
+  gradient.addColorStop(0,"#DFFFFF");
+  gradient.addColorStop(1,"#aa048b");
+  c.fillStyle = gradient;
   c.fillRect(0, 0, 1920, 400);
 
   // ground
+  c.beginPath();
   c.fillStyle = '#329F5B';
-  c.fillRect(0, 400, 1920, 1080);
+  c.fillRect(0, 400, 1920, 680);
 
   drawShrineSprite({
     c,

@@ -6,6 +6,7 @@ function drawScaledPixel(state, x, y) {
     scale = 1,
     fillStyle = 'black'
   } = state;
+  c.beginPath();
   c.fillStyle = fillStyle;
   c.fillRect(x * scale + xOffset, y * scale + yOffset, scale, scale);
 }
