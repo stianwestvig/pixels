@@ -1,5 +1,9 @@
 import { drawNinjaSprite } from './models/ninja.js';
 import { drawShrineSprite } from './models/shrine.js';
+import {
+  drawPinkFlowerSprite,
+  drawPurpleFlowerSprite
+} from './models/flower.js';
 import { handleKeyDown, handleKeyUp } from './lib/keyboard-input.js';
 import { canvas, fpsCounter } from './lib/dom-elements.js';
 
@@ -15,6 +19,19 @@ init();
 const c = canvas.getContext('2d');
 const walkingSpeed = 15;
 let animationCounter = 0;
+
+let flowerState = {
+  animationCounter,
+  c,
+  position: {
+    x: 200,
+    y: 650,
+    scale: 15
+  },
+  theme: 'red',
+  walking: false,
+  direction: 'right'
+}
 
 let playerState = {
   animationCounter,
@@ -98,7 +115,7 @@ function draw(timestamp) {
       y: 250,
       scale: 5
     }
-  })
+  });
 
   drawShrineSprite({
     c,
@@ -107,7 +124,7 @@ function draw(timestamp) {
       y: 250,
       scale: 7
     }
-  })
+  });
 
   drawShrineSprite({
     c,
@@ -115,6 +132,33 @@ function draw(timestamp) {
       x:1560,
       y: 250,
       scale: 5
+    }
+  });
+  
+  drawPinkFlowerSprite({
+    c,
+    position: {
+      x: flowerState.position.x,
+      y: flowerState.position.y,
+      scale: 10
+    }
+  })
+  
+  drawPurpleFlowerSprite({
+    c,
+    position: {
+      x: 700,
+      y: 700,
+      scale: 10
+    }
+  })
+  
+  drawPinkFlowerSprite({
+    c,
+    position: {
+      x: 500,
+      y: 600,
+      scale: 10
     }
   })
 
@@ -127,6 +171,8 @@ function draw(timestamp) {
     animationCounter = 0;
   }
   playerState.animationCounter = animationCounter;
+  
+  // flowerState.position.x += walkingSpeed / 6;
 
   // update positions
   if (input.isRight) {
